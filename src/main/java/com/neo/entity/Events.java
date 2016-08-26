@@ -30,4 +30,5 @@ public class Events implements Serializable{
 
     @Column
     private Date createdAt;
+
 }

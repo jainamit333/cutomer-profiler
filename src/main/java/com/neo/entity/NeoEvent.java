@@ -10,7 +10,7 @@ import java.util.List;
 /**
  * Created by amit on 25/8/16.
  */
-@NodeEntity
+@NodeEntity(label = "neo_event")
 @Data
 public class NeoEvent {
 
@@ -27,5 +27,4 @@ public class NeoEvent {
     @Relationship(type = "EVENT_FUNNEL")
     private List<NeoFunnel> funnels;
 
-    private NeoEvent(){}
 }
