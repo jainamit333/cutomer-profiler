@@ -1,16 +1,11 @@
 package com.neo.impl;
 
-import com.neo.entity.Events;
-import com.neo.entity.Funnel;
-import com.neo.entity.Zone;
+import com.neo.entity.*;
 import com.neo.entity.neo.NeoEvent;
 import com.neo.entity.neo.NeoFunnel;
 import com.neo.entity.neo.NeoGraph;
 import com.neo.pojo.FunnelType;
-import com.neo.repositories.mysql.CustomerRepository;
-import com.neo.repositories.mysql.EventRepository;
-import com.neo.repositories.mysql.FunnelRepository;
-import com.neo.repositories.mysql.ZoneRepository;
+import com.neo.repositories.mysql.*;
 import com.neo.repositories.neo.NeoEventRepository;
 import com.neo.repositories.neo.NeoFunnelRepository;
 import com.neo.repositories.neo.NeoGraphRepository;
@@ -44,6 +39,8 @@ public class AdminServiceImpl implements AdminService {
     private FunnelRepository funnelRepository;
     @Autowired
     private ZoneRepository zoneRepository;
+    @Autowired
+    private CustomerEventRepository customerEventRepository;
 
     @Override
     public Long eventsCounter() {
@@ -168,7 +165,7 @@ public class AdminServiceImpl implements AdminService {
     public void createNeoZone(Long zoneId, String name, String expression, List<Long> eventsAffecting) {
 
 
-        try{
+        try {
             NeoGraph neoGraph = new NeoGraph();
             List<NeoEvent> neoEvents = neoEventRepository.findByEventIds(eventsAffecting);
             neoGraph.setZoneId(zoneId);
@@ -176,7 +173,7 @@ public class AdminServiceImpl implements AdminService {
             neoGraph.setEvents(neoEvents);
             neoGraphRepository.save(neoGraph);
 
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             throw e;
         }
@@ -184,22 +181,44 @@ public class AdminServiceImpl implements AdminService {
 
     @Override
     public Long getOrCreateCustomer(String customerId) {
-        return null;
+
+        Customer customer = customerRepository.findByCustomerId(customerId);
+        if (customer == null) {
+            customer = new Customer();
+            customer.setCustomerId(customerId);
+            customer.setCreatedAt(new Date());
+            customerRepository.save(customer);
+        }
+        return customer.getId();
+
     }
 
     @Override
     public Long getEventId(String name) throws Exception {
-        Events events =  eventRepository.findByName(name);
-        if(events==null){
+        Events events = eventRepository.findByName(name);
+        if (events == null) {
             throw new Exception("No Event present by this name");
-        }else{
+        } else {
             return events.getId();
         }
     }
 
     @Override
     public Long createCustomerEventEntry(Long customer, Long eventId, Integer score, Boolean considerForFunnel, Boolean considerForZone, Boolean duplicateConsideration) {
-        return null;
+
+
+        assert customer != null;
+        assert eventId != null;
+
+        CustomerEvents customerEvents = new CustomerEvents();
+        customerEvents.setConsiderForFunnel(considerForFunnel);
+        customerEvents.setConsiderForZone(considerForZone);
+        customerEvents.setCreatedAt(new Date());
+        customerEvents.setCustomerId(customer);
+        customerEvents.setEventId(eventId);
+        customerEventRepository.save(customerEvents);
+        return customerEvents.getId();
+
     }
 
 

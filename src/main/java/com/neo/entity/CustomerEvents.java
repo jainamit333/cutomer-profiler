@@ -19,10 +19,10 @@ public class CustomerEvents implements Serializable{
     private Long id;
 
     @Column
-    private Integer eventId;
+    private Long eventId;
 
     @Column
-    private Integer customerId;
+    private Long customerId;
 
     @Column
     private Date createdAt;
