@@ -22,7 +22,6 @@ public class Zone implements Serializable{
     @Column
     private String name;
 
-
     @Lob
     private String zoneEvaluation;
 

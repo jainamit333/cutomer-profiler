@@ -1,4 +1,4 @@
-package com.neo.entity;
+package com.neo.entity.neo;
 
 import lombok.Data;
 import org.neo4j.ogm.annotation.*;
@@ -8,10 +8,10 @@ import java.util.List;
 /**
  * Created by amit on 25/8/16.
  */
-
-@RelationshipEntity(type = "EVENTS_PERFORMED")
+@RelationshipEntity(type = "EVENT_BY")
 @Data
-public class NeoCustomerEntityRelationShip {
+public class NeoEventCustomerRelationShip {
+
 
 
     @GraphId
@@ -20,13 +20,9 @@ public class NeoCustomerEntityRelationShip {
     @Property
     private List<String> tags;
 
-    @StartNode
+    @EndNode
     private  NeoCustomer customer;
 
-    @EndNode
+    @StartNode
     private NeoEvent event;
-
-
-
-
 }

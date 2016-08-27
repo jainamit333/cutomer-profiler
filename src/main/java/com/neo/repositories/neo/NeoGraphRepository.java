@@ -1,13 +1,13 @@
 package com.neo.repositories.neo;
 
-import com.neo.entity.NeoGraph;
-import org.springframework.data.repository.CrudRepository;
+import com.neo.entity.neo.NeoGraph;
+import org.springframework.data.neo4j.repository.GraphRepository;
 
 /**
  * Created by amit on 26/8/16.
  */
-public interface NeoGraphRepository extends CrudRepository<NeoGraph,Long> {
+public interface NeoGraphRepository extends GraphRepository<NeoGraph> {
 
-    Long countById();
+
 
 }

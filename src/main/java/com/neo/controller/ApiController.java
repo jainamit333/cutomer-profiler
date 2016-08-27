@@ -53,6 +53,24 @@ public class ApiController {
         return actionHandler.createEvent(jsonUtil.createJsonFromString(request));
     }
 
+    @RequestMapping(path = "create/funnel",method = RequestMethod.POST)
+    @ResponseBody
+    public Response createFunnel(@RequestBody String request){
+        return actionHandler.createFunnel(jsonUtil.createJsonFromString(request));
+    }
+
+
+    @RequestMapping(path = "create/graph",method = RequestMethod.POST)
+    @ResponseBody
+    public Response createGraph(@RequestBody String request){
+        return actionHandler.createGraph(jsonUtil.createJsonFromString(request));
+    }
+
+    @RequestMapping(path = "event",method = RequestMethod.POST)
+    @ResponseBody
+    public Response event(@RequestBody String request){
+        return actionHandler.handleCustomerEvent(jsonUtil.createJsonFromString(request));
+    }
 
 
 }

@@ -1,4 +1,4 @@
-package com.neo.entity;
+package com.neo.entity.neo;
 
 import lombok.Data;
 import org.neo4j.ogm.annotation.GraphId;
@@ -12,10 +12,12 @@ import java.util.List;
  */
 @NodeEntity(label = "neo_event")
 @Data
-public class NeoEvent {
+public class NeoEvent{
 
     @GraphId
     private Long id;
+
+    private Long eventId;
 
     @Relationship(type = "EVENT_BY")
     private NeoEventCustomerRelationShip eventCustomerRelationShip;

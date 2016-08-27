@@ -22,14 +22,6 @@ public class Customer implements Serializable{
     @Column
     private String customerId;
 
-    @Column
-    private  String emailId;
-
-    @Column
-    private String name;
-
-    @Column
-    private String ipAddress;
 
     @Column
     private Date createdAt;

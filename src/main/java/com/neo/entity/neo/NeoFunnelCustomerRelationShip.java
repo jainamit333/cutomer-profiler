@@ -1,14 +1,12 @@
-package com.neo.entity;
+package com.neo.entity.neo;
 
-import lombok.Data;
 import org.neo4j.ogm.annotation.*;
 
 /**
  * Created by amit on 25/8/16.
  */
-@RelationshipEntity(type = "CUSTOMER_RELATED_TO_FUNNEL")
-@Data
-public class NeoCustomerFunnelRelationShip {
+@RelationshipEntity(type = "HAS_CUSTOMER")
+public class NeoFunnelCustomerRelationShip {
 
     @GraphId
     private Long relationshipId;
@@ -16,12 +14,9 @@ public class NeoCustomerFunnelRelationShip {
     @Property
     private String step;
 
-    @StartNode
+    @EndNode
     private NeoCustomer customer;
 
-    @EndNode
+    @StartNode
     private NeoFunnel funnel;
-
-
-
 }

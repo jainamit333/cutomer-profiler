@@ -1,11 +1,10 @@
-package com.neo.entity;
+package com.neo.entity.neo;
 
+import com.neo.entity.Customer;
 import lombok.Data;
 import org.neo4j.ogm.annotation.GraphId;
 import org.neo4j.ogm.annotation.NodeEntity;
 import org.neo4j.ogm.annotation.Relationship;
-
-import java.util.List;
 
 /**
  * Created by amit on 25/8/16.
@@ -24,7 +23,7 @@ public class NeoCustomer {
     private NeoCustomerEntityRelationShip customerEntityRelationShip;
 
     @Relationship(type = "CUSTOMER_GRAPH")
-    private List<NeoGraph> graphs;
+    private NeoCustomerZoneRelationShip graphs;
 
     @Relationship(type = "CUSTOMER_RELATED_TO_FUNNEL")
     private NeoCustomerFunnelRelationShip neoCustomerFunnelRelationShip;

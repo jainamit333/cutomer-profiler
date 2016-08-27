@@ -1,22 +1,25 @@
-package com.neo.entity;
+package com.neo.entity.neo;
 
 import org.neo4j.ogm.annotation.*;
 
+import javax.persistence.Lob;
+
 /**
- * Created by amit on 25/8/16.
+ * Created by amit on 27/8/16.
  */
 @RelationshipEntity(type = "HAS_CUSTOMER")
-public class NeoFunnelCustomerRelationShip {
+public class NeoZoneCustomerREelationShip {
 
     @GraphId
     private Long relationshipId;
 
     @Property
-    private String step;
+    @Lob
+    private String  expression;
 
     @EndNode
     private NeoCustomer customer;
 
     @StartNode
-    private NeoFunnel funnel;
+    private NeoGraph graph;
 }

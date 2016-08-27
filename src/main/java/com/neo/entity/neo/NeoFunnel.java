@@ -1,4 +1,4 @@
-package com.neo.entity;
+package com.neo.entity.neo;
 
 import lombok.Data;
 import org.neo4j.ogm.annotation.GraphId;
@@ -17,7 +17,10 @@ public class NeoFunnel {
     @GraphId
     private Long id;
 
-    private NeoFunnel(){}
+
+    private String funnelName;
+
+    public NeoFunnel(){}
 
     @Relationship(type = "AFFECTED_BY")
     private List<NeoEvent> events;
