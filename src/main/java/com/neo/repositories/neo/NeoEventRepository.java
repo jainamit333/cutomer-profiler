@@ -11,7 +11,7 @@ import java.util.List;
 public interface NeoEventRepository extends GraphRepository<NeoEvent> {
 
     NeoEvent findByEventId(Long eventId);
-    List<NeoEvent> findByEventIds(List<Long> eventId);
+    List<NeoEvent> findByEventIdIn(List<Long> eventId);
 
 
 }

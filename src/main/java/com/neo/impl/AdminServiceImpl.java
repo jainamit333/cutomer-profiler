@@ -108,7 +108,7 @@ public class AdminServiceImpl implements AdminService {
     public Long createNeoFunnel(String name, List<Long> eventsAffecting) {
 
         try {
-            List<NeoEvent> neoEvents = neoEventRepository.findByEventIds(eventsAffecting);
+            List<NeoEvent> neoEvents = neoEventRepository.findByEventIdIn(eventsAffecting);
             NeoFunnel neoFunnel = new NeoFunnel();
             neoFunnel.setFunnelName(name);
             neoFunnel.setEvents(neoEvents);
@@ -167,7 +167,7 @@ public class AdminServiceImpl implements AdminService {
 
         try {
             NeoGraph neoGraph = new NeoGraph();
-            List<NeoEvent> neoEvents = neoEventRepository.findByEventIds(eventsAffecting);
+            List<NeoEvent> neoEvents = neoEventRepository.findByEventIdIn(eventsAffecting);
             neoGraph.setZoneId(zoneId);
             neoGraph.setExpression(expression);
             neoGraph.setEvents(neoEvents);
